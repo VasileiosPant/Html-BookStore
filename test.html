@@ -1,0 +1,149 @@
+<html>
+<head>
+<style>
+
+.button3 {
+	font-size: 24px;
+	border-radius: 8px;	
+	width: 10%;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	 position:absolute;
+    transition: .5s ease;
+    top: 80%;
+    left: 49%;
+	
+}
+.button3:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.button4 {
+	font-size: 24px;
+	border-radius: 8px;	
+	width: 10%;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	 position:absolute;
+    transition: .5s ease;
+    top: 80%;
+    left: 38%;
+	
+}
+.button4:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> <!-- To display an HTML page correctly, a web browser must know the character set used in the page.-->
+</head>
+<body background="http://whytoread.com/wp-content/uploads/2015/03/best-books-book-youll-ever-read.jpg">
+
+	
+
+<form  action="" method="POST" name= "Register" >
+	<div id="disp_data"></div>
+	
+	<p style="color:white; font-size:350%;text-align:center; ">Fill in the following
+		form.</p>
+	<p style="color:white; font-size:200%; position:absolute; top:15%; right: 47%; ">Author</p>
+	<input type="text" name="author" id="txtauthor" style="color:black; font-size:150%; position:absolute; top:25%; right: 40%;  "
+		/>
+	<p style="color:white; font-size:200%; position:absolute; top:30%; right: 49%; ">Title</p>
+	<input type="text" name="title" id="txttitle" style="color:black; font-size:150%; position:absolute; top:40%; right: 40%; "
+		/>
+	<p style="color:white; font-size:200%; position:absolute; top:45%; right: 48%;">Price</p>
+	<input type="number" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="price" id="numprice" style="color:black; font-size:150%; position:absolute; top:55%; right: 40%; "
+		/>
+	<p style="color:white; font-size:200%; position:absolute; top:60%; right: 48%;" >Genre</p>
+	<select name="genre" id="txtgenre" style="color:black; font-size:180%; position:absolute; top:70%; right: 40%;>
+		<option value="science fiction">Science fiction</option>
+		<option value="satire">Satire</option>
+		<option value="drama">Drama</option>
+		<option value="action and adventure">Action and Adventure</option>
+		<option value="romance">Romance</option>
+		<option value="mystery">Mystery</option>
+		<option value="horror">Horror</option>
+	</select>
+	
+	<input type="button" class="button button4" id="but1" value="Insert" onclick="ins();">
+	
+	
+	
+	
+</form>
+
+<form action="frontend.html">  
+		<button class="button
+		button3">Cancel</button>
+	</form>
+
+<script type="text/javascript">
+
+
+
+
+
+function ins()
+{
+	var au=document.getElementById("txtauthor").value;// we get what user wrote.
+	var tl=document.getElementById("txttitle").value;
+	var gn=document.getElementById("txtgenre").value;
+	var pr=document.getElementById("numprice").value;
+	
+	
+	
+	var http = new XMLHttpRequest();
+	var url = "test.php";
+	var params = "au="+au+"&tl="+tl+"&gn="+gn+"&pr="+pr+"&status=ins";
+	http.open("POST", url, true); //with method post we send to test.php
+
+	//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	http.onreadystatechange = function() {//Call a function when the state changes.
+		if(http.readyState == 4 && http.status == 200) {
+			
+			var json = '{"result":true,"count":1}',
+			obj = JSON.parse(json);
+
+			alert(obj.result);
+			
+			
+			
+			
+		}
+	}
+	http.send(params);	// send the params.
+	document.getElementById("txtauthor").value=""; // it doesnt keep what user wrote at the textbox.
+	document.getElementById("txttitle").value="";
+	document.getElementById("txtgenre").value="";
+	document.getElementById("numprice").value="";
+	
+	
+	
+
+	
+	
+	
+
+	
+	
+	
+}
+
+
+
+</script>
+	
+
+	
+	
+	
+
+
+</body>
+</html>

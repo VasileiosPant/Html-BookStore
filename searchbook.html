@@ -1,0 +1,103 @@
+<html>
+<head>
+<style>
+
+<!-- Here i costumize the style and position of buttons 3 and 4.-->
+.button3 {
+	color : white;
+	background-color: #555555;
+	font-size: 24px;
+	border-radius: 8px;	
+	width: 10%;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	 position:absolute;
+    transition: .5s ease;
+    top: 34%;
+    left: 54%;
+	
+}
+.button3:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.button4 {
+	color : white;
+	background-color: #555555;
+	font-size: 24px;
+	border-radius: 8px;	
+	width: 10%;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	 position:absolute;
+    transition: .5s ease;
+    top: 34%;
+    left: 43%;
+	
+}
+.button4:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> <!-- To display an HTML page correctly, a web browser must know the character set used in the page.-->
+</head>
+<body background="http://ichef.bbci.co.uk/wwfeatures/wm/live/1280_640/images/live/p0/2v/dp/p02vdpfn.jpg">
+
+<h1 style="color:black; font-size:350%;text-align:center; ">Fill in the following
+		form.</h1>
+<h2 style="color:black; font-size:280%;text-align:left; ">Results </h2>
+
+<form  action="" method="GET" name= "Register" >
+	<div id="disp_data"></div>
+	
+	
+	<p style="color:black; font-size:200%; position:absolute; top:15%; right: 44%; ">Search</p>
+	<input type="text" name="search" id="search" style="color:black; font-size:150%; position:absolute; top:25%; right: 35%;  " 
+		/>
+	
+	
+	<input type="button" class="button button4" id="but1" value="Search" onclick="disp_data();">
+	
+	
+	
+	
+</form>
+
+<form action="frontend.html"> <!--When user clicks on cancel sends him to frontend.html -->
+		<button class="button
+		button3">Cancel</button>
+	</form>
+
+<script type="text/javascript">
+
+function disp_data()
+{
+	
+	var au=document.getElementById("search").value; //we get what user wrote.
+	var xmlhttp= new XMLHttpRequest();
+	xmlhttp.open("GET","update2.php?au="+au+"&status=disp",false);// with get method we send au to update2.php 
+	xmlhttp.send(null);
+	document.getElementById("disp_data").innerHTML=xmlhttp.responseText; // gives us the response 
+
+}
+
+
+
+
+
+
+
+</script>
+	
+
+	
+	
+	
+
+
+</body>
+</html>
